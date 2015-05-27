@@ -290,10 +290,29 @@ public final class Carton extends JFrame {
                     if (LINEA == false) {
                         buscarLinea();
                     }
-                    
+
                     //Buscamos el bingo una vez hayamos hecho linea
                     if ((LINEA == true) && (BINGO == false)) {
                         buscarBingo();
+
+                        if (BINGO == true) {
+                            int seleccion = JOptionPane.showOptionDialog(null, "¿Que desea Hacer?", "Fin de Juego", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, new Object[]{"Otra Partida", "Salir"}, "Otra Partida");
+
+                            if (seleccion == 0) {
+                                //Si opcion Volver a jugar poner todo como estaba y 
+                                //cerrar los cartones abiertos que no se como hacerlo
+                                System.out.println("Volver a Jugar");
+                                BingoFinal.nCartones = 0;
+                                BingoFinal.lbl_info.setText("");
+                                BingoFinal.jugar = false;
+                                BingoFinal.btn_Jugar.setText("1. Jugar");
+                                BingoFinal.Cartones.clear();
+                            } else {
+                                //Si opcion salir cerrar el programa
+                                System.out.println("Cerrar Programa");
+                                System.exit(0);
+                            }
+                        }
                     }
                 }
                 ncelda++;
