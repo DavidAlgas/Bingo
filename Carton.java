@@ -3,6 +3,7 @@ package bingofinal;
 import java.awt.*;
 import java.util.*;
 import javax.swing.*;
+import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 
 public final class Carton extends JFrame {
 
@@ -12,8 +13,8 @@ public final class Carton extends JFrame {
     int[] columEmpty = new int[9];
     int totalEmpy, lineaEmpy;
     ArrayList<Integer> Numeros = null;
-    static public boolean LINEA = false;
-    static public boolean BINGO = false;
+    public static boolean LINEA = false;
+    public static boolean BINGO = false;
 
     public Carton() {
         setSize(550, 240);
@@ -26,6 +27,7 @@ public final class Carton extends JFrame {
         setVisible(true);
     }
 
+    //Cargamos el array de numeros en los botones para mostrarlos
     void cargarCeldas() {
 
         panelCarton = new JPanel();
@@ -56,6 +58,7 @@ public final class Carton extends JFrame {
         }
     }
 
+    //Llenamos el array carton con los numeros correctamente
     private void meterNumeros() {
 
         for (int columna = 0; columna < 9; columna++) {
@@ -92,6 +95,7 @@ public final class Carton extends JFrame {
         }
     }
 
+    //Llenamos el arrya con los huecos aleatoriamente
     private void llenarCARTON() {
 
         do {
@@ -272,6 +276,7 @@ public final class Carton extends JFrame {
         }
     }
 
+    //Metodo para buscar el numero de la bola
     public void buscarNumero(int bola) {
         int ncelda = 0;
 
@@ -281,11 +286,14 @@ public final class Carton extends JFrame {
                 if (carton[fila][columna] == bola) {
                     celda[ncelda].setBackground(Color.GREEN);
 
+                    //Buscamos la linea
                     if (LINEA == false) {
-                        if (buscarLinea() == true) {
-                            JOptionPane.showMessageDialog(null, "Linea en " + getTitle(), " -- LINEA --", JOptionPane.INFORMATION_MESSAGE);
-
-                        }
+                        buscarLinea();
+                    }
+                    
+                    //Buscamos el bingo una vez hayamos hecho linea
+                    if ((LINEA == true) && (BINGO == false)) {
+                        buscarBingo();
                     }
                 }
                 ncelda++;
@@ -293,8 +301,8 @@ public final class Carton extends JFrame {
         }
     }
 
-    public boolean buscarLinea() {
-        boolean lin = false;
+    //Buscamos si hay alguna linea completa
+    public void buscarLinea() {
         int aciertos = 0;
         int ncelda = 0;
 
@@ -307,12 +315,32 @@ public final class Carton extends JFrame {
                 ncelda++;
             }
             if (aciertos == 9) {
-                lin = true;
+                LINEA = true;
+                JOptionPane.showMessageDialog(null, "Linea en " + getTitle(), " -- LINEA --", JOptionPane.INFORMATION_MESSAGE);
             }
             aciertos = 0;
         }
+    }
 
-        return lin;
+    //Buscamos el Bingo
+    public void buscarBingo() {
+        int aciertos = 0;
+        int ncelda = 0;
+
+        for (int fila = 0; fila < 3; fila++) {
+            for (int columna = 0; columna < 9; columna++) {
+
+                if (celda[ncelda].getBackground().equals(Color.GREEN) || celda[ncelda].getBackground().equals(Color.GRAY)) {
+                    aciertos++;
+                }
+                ncelda++;
+            }
+        }
+
+        if (aciertos == 27) {
+            BINGO = true;
+            JOptionPane.showMessageDialog(null, "BINGO " + getTitle(), " -- BINGO --", JOptionPane.INFORMATION_MESSAGE);
+        }
     }
 
     /**
