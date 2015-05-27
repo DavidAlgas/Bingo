@@ -8,13 +8,14 @@ import javax.swing.*;
 public final class BingoFinal extends JFrame {
 
     //Creamos los botonen
-    JButton btnInicio = new JButton("1. Jugar");
-    JButton btnCarton = new JButton("2. Cartón");
-    JButton btnFin = new JButton("3. Fin");
+    static JButton btn_Jugar = new JButton("1. Jugar");
+    JButton btn_Carton = new JButton("2. Cartón");
+    JButton btn_Salir = new JButton("3. Fin");
     JLabel lbl_info = new JLabel();
     static ArrayList<Carton> Cartones = new ArrayList<>();
     ArrayList<Integer> Bolas = new ArrayList<>();
-    public int nCartones, bola;
+    static int nCartones, bola;
+    boolean jugar = false;
 
     //Creamos el panel
     JPanel contentpanel;
@@ -37,31 +38,31 @@ public final class BingoFinal extends JFrame {
         contentpanel.setBackground(Color.darkGray);
 
         //Asignamos posicion y tamaño a los botones
-        btnInicio.setBounds(50, 50, 200, 40);
-        btnCarton.setBounds(50, 100, 200, 40);
-        btnFin.setBounds(50, 150, 200, 40);
+        btn_Jugar.setBounds(50, 50, 200, 40);
+        btn_Carton.setBounds(50, 100, 200, 40);
+        btn_Salir.setBounds(50, 150, 200, 40);
         lbl_info.setBounds(50, 200, 200, 20);
         lbl_info.setForeground(Color.red);
 
         //Añadimos los botones al panel
-        contentpanel.add(btnInicio);
-        contentpanel.add(btnCarton);
-        contentpanel.add(btnFin);
+        contentpanel.add(btn_Jugar);
+        contentpanel.add(btn_Carton);
+        contentpanel.add(btn_Salir);
         contentpanel.add(lbl_info);
 
         //----------------------------------------------------------------------
         //----------------------------------------------------------------------
         //Damos Funcionalidades a los Botones
         //Boton de Iniciar El Juego
-        btnInicio.addActionListener(new ActionListener() {
+        btn_Jugar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
                 try {
                     if (nCartones < 1) {
                         lbl_info.setText("No hay cartones Creados");
                     } else {
-                        nCartones = 6;
                         lbl_info.setText("Hay " + nCartones + " creados.");
+                        jugar = true;
                         inicioJuego();
                     }
                 } catch (Exception err) {
@@ -70,11 +71,11 @@ public final class BingoFinal extends JFrame {
         });
 
         //Boton de Crear Cartones
-        btnCarton.addActionListener(new ActionListener() {
+        btn_Carton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
                 try {
-                    if (nCartones == 6) {
+                    if (nCartones == 6 || jugar == true) {
                         JOptionPane.showMessageDialog(null, "Has superado el limite de Cartones", "Alerta", JOptionPane.INFORMATION_MESSAGE, null);
                     } else {
                         Carton carton = new Carton();
@@ -88,34 +89,36 @@ public final class BingoFinal extends JFrame {
         });
 
         //Boton de Salir
-        btnFin.addActionListener(new ActionListener() {
+        btn_Salir.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
                 System.exit(0);
             }
         });
     }
-
+    
+    //Metodo para iniciar el juego
     public void inicioJuego() {
 
         boolean existe = false;
 
         do {
             bola = (int) Math.floor(Math.random() * (90 - 1 + 1) + 1);
-            
+
             if (Bolas.contains(bola) == false && bola != 0) {
                 Bolas.add(bola);
                 existe = true;
             }
         } while (!existe);
-        
-        btnInicio.setText(Integer.toString(bola));
+
+        btn_Jugar.setText(Integer.toString(bola));
 
         for (Carton nCarton : Cartones) {
             nCarton.buscarNumero(bola);
         }
     }
 
+    //Clase principal
     public static void main(String[] args) {
         BingoFinal main = new BingoFinal();
     }
