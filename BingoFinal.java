@@ -11,11 +11,11 @@ public final class BingoFinal extends JFrame {
     static JButton btn_Jugar = new JButton("1. Jugar");
     JButton btn_Carton = new JButton("2. Cartón");
     JButton btn_Salir = new JButton("3. Fin");
-    JLabel lbl_info = new JLabel();
+    static JLabel lbl_info = new JLabel();
     static ArrayList<Carton> Cartones = new ArrayList<>();
     ArrayList<Integer> Bolas = new ArrayList<>();
     static int nCartones, bola;
-    boolean jugar = false;
+    static boolean jugar = false;
 
     //Creamos el panel
     JPanel contentpanel;
