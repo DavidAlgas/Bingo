@@ -299,17 +299,20 @@ public final class Carton extends JFrame {
                             int seleccion = JOptionPane.showOptionDialog(null, "¿Que desea Hacer?", "Fin de Juego", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, new Object[]{"Otra Partida", "Salir"}, "Otra Partida");
 
                             if (seleccion == 0) {
-                                //Si opcion Volver a jugar poner todo como estaba y 
-                                //cerrar los cartones abiertos que no se como hacerlo
-                                System.out.println("Volver a Jugar");
+
                                 BingoFinal.nCartones = 0;
                                 BingoFinal.lbl_info.setText("");
                                 BingoFinal.jugar = false;
                                 BingoFinal.btn_Jugar.setText("1. Jugar");
+                                BingoFinal.Bolas.clear();
+                                BINGO = false;
+                                LINEA = false;
+                                for (Carton cartonq : BingoFinal.Cartones) {
+                                    cartonq.dispose();
+                                }
                                 BingoFinal.Cartones.clear();
+
                             } else {
-                                //Si opcion salir cerrar el programa
-                                System.out.println("Cerrar Programa");
                                 System.exit(0);
                             }
                         }
@@ -331,14 +334,44 @@ public final class Carton extends JFrame {
                 if (celda[ncelda].getBackground().equals(Color.GREEN) || celda[ncelda].getBackground().equals(Color.GRAY)) {
                     aciertos++;
                 }
+                if (aciertos == 9) {
+
+                    LINEA = true;
+                    if ((ncelda >= 0) && (ncelda <= 8)) {
+                        int pos = 0;
+                        for (int columnaa = 0; columnaa < 9; columnaa++) {
+                            if (celda[pos].getBackground().equals(Color.GREEN)) {
+                                celda[pos].setBackground(Color.MAGENTA);
+                            }
+                            pos++;
+                        }
+                    }
+                    if ((ncelda >= 9) && (ncelda <= 17)) {
+                        int pos = 9;
+                        for (int columnab = 0; columnab < 9; columnab++) {
+                            if (celda[pos].getBackground().equals(Color.GREEN)) {
+                                celda[pos].setBackground(Color.MAGENTA);
+                            }
+                            pos++;
+                        }
+                    }
+                    if ((ncelda >= 18) && (ncelda <= 27)) {
+                        int pos = 18;
+                        for (int columnac = 0; columnac < 9; columnac++) {
+                            if (celda[pos].getBackground().equals(Color.GREEN)) {
+                                celda[pos].setBackground(Color.MAGENTA);
+                            }
+                            pos++;
+                        }
+                    }
+                    JOptionPane.showMessageDialog(null, "Linea en " + getTitle(), " -- LINEA --", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Vamos para BINGO", " -- Informacion --", JOptionPane.INFORMATION_MESSAGE);
+                }
                 ncelda++;
-            }
-            if (aciertos == 9) {
-                LINEA = true;
-                JOptionPane.showMessageDialog(null, "Linea en " + getTitle(), " -- LINEA --", JOptionPane.INFORMATION_MESSAGE);
             }
             aciertos = 0;
         }
+
     }
 
     //Buscamos el Bingo
@@ -349,7 +382,7 @@ public final class Carton extends JFrame {
         for (int fila = 0; fila < 3; fila++) {
             for (int columna = 0; columna < 9; columna++) {
 
-                if (celda[ncelda].getBackground().equals(Color.GREEN) || celda[ncelda].getBackground().equals(Color.GRAY)) {
+                if (celda[ncelda].getBackground().equals(Color.GREEN) || celda[ncelda].getBackground().equals(Color.GRAY) || celda[ncelda].getBackground().equals(Color.MAGENTA)) {
                     aciertos++;
                 }
                 ncelda++;
@@ -358,6 +391,16 @@ public final class Carton extends JFrame {
 
         if (aciertos == 27) {
             BINGO = true;
+            ncelda = 0;
+
+            for (int fila = 0; fila < 3; fila++) {
+                for (int columna = 0; columna < 9; columna++) {
+                    if (celda[ncelda].getBackground().equals(Color.GREEN)) {
+                        celda[ncelda].setBackground(Color.MAGENTA);
+                    }
+                    ncelda++;
+                }
+            }
             JOptionPane.showMessageDialog(null, "BINGO " + getTitle(), " -- BINGO --", JOptionPane.INFORMATION_MESSAGE);
         }
     }
