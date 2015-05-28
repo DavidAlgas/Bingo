@@ -7,6 +7,7 @@ import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 
 public final class Carton extends JFrame {
 
+    //Inicializo los componentes
     JPanel panelCarton, panelCeldas;
     JButton[] celda;
     private int[][] carton = new int[3][9];
@@ -16,6 +17,7 @@ public final class Carton extends JFrame {
     public static boolean LINEA = false;
     public static boolean BINGO = false;
 
+    //Constructor de la Clase
     public Carton() {
         setSize(550, 240);
         setResizable(false);
@@ -27,7 +29,9 @@ public final class Carton extends JFrame {
         setVisible(true);
     }
 
-    //Cargamos el array de numeros en los botones para mostrarlos
+    //--------------------------------------------------------------------------
+    //--------------------------------------------------------------------------
+    //Metodo para cargar el array con los numeros ya insertado en los botonoes para su visualizacion
     void cargarCeldas() {
 
         panelCarton = new JPanel();
@@ -58,7 +62,9 @@ public final class Carton extends JFrame {
         }
     }
 
-    //Llenamos el array carton con los numeros correctamente
+    //--------------------------------------------------------------------------
+    //--------------------------------------------------------------------------
+    //Metodo para llenar el array con los numeros del bingo ordenadamente y sin repetir
     private void meterNumeros() {
 
         for (int columna = 0; columna < 9; columna++) {
@@ -95,7 +101,9 @@ public final class Carton extends JFrame {
         }
     }
 
-    //Llenamos el arrya con los huecos aleatoriamente
+    //--------------------------------------------------------------------------
+    //--------------------------------------------------------------------------
+    //Metodo para llenar el array de los huecos corresondientes de manera aleatoria
     private void llenarCARTON() {
 
         do {
@@ -125,7 +133,9 @@ public final class Carton extends JFrame {
         } while (totalEmpy != 12);
     }
 
-    //Metodo para crear los nummeros que se introduciran en el carton ordenados
+    //--------------------------------------------------------------------------
+    //--------------------------------------------------------------------------
+    //Metodo para generar los numeros segun la columna del carton
     public void generarNumeros(int opcion) {
         int num1, cont;
 
@@ -276,7 +286,10 @@ public final class Carton extends JFrame {
         }
     }
 
-    //Metodo para buscar el numero de la bola
+    //--------------------------------------------------------------------------
+    //--------------------------------------------------------------------------
+    //Metodo al que le pasamos la bola para buscar en el array de numeros si esta y marcarlo como encontrado
+    //Si esta en el array buscaremos si se ha completado la linea o el bingo.
     public void buscarNumero(int bola) {
         int ncelda = 0;
 
@@ -323,7 +336,9 @@ public final class Carton extends JFrame {
         }
     }
 
-    //Buscamos si hay alguna linea completa
+    //--------------------------------------------------------------------------
+    //--------------------------------------------------------------------------
+    //Metodo para buscar si hay alguna linea completa y asi poder cantar LINEA!
     public void buscarLinea() {
         int aciertos = 0;
         int ncelda = 0;
@@ -364,6 +379,10 @@ public final class Carton extends JFrame {
                             pos++;
                         }
                     }
+                    System.out.println(" -- Comprobamos LINEA --");
+                    for (Integer comprobamos : BingoFinal.Bolas) {
+                        System.out.print(comprobamos + ", ");
+                    }
                     JOptionPane.showMessageDialog(null, "Linea en " + getTitle(), " -- LINEA --", JOptionPane.INFORMATION_MESSAGE);
                     JOptionPane.showMessageDialog(null, "Vamos para BINGO", " -- Informacion --", JOptionPane.INFORMATION_MESSAGE);
                 }
@@ -374,7 +393,9 @@ public final class Carton extends JFrame {
 
     }
 
-    //Buscamos el Bingo
+    //--------------------------------------------------------------------------
+    //--------------------------------------------------------------------------
+    //Metodo para buscar en el carton tiene BINGO y ganar el juego
     public void buscarBingo() {
         int aciertos = 0;
         int ncelda = 0;
@@ -391,6 +412,10 @@ public final class Carton extends JFrame {
 
         if (aciertos == 27) {
             BINGO = true;
+            System.out.println(" -- Comprobamos BINGO --");
+            for (Integer comprobamos : BingoFinal.Bolas) {
+                System.out.print(comprobamos + ", ");
+            }
             ncelda = 0;
 
             for (int fila = 0; fila < 3; fila++) {
