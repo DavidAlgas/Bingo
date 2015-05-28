@@ -13,7 +13,7 @@ public final class BingoFinal extends JFrame {
     JButton btn_Salir = new JButton("3. Fin");
     static JLabel lbl_info = new JLabel();
     static ArrayList<Carton> Cartones = new ArrayList<>();
-    ArrayList<Integer> Bolas = new ArrayList<>();
+    static ArrayList<Integer> Bolas = new ArrayList<>();
     static int nCartones, bola;
     static boolean jugar = false;
 
@@ -61,9 +61,15 @@ public final class BingoFinal extends JFrame {
                     if (nCartones < 1) {
                         lbl_info.setText("No hay cartones Creados");
                     } else {
-                        lbl_info.setText("Hay " + nCartones + " creados.");
-                        jugar = true;
-                        inicioJuego();
+
+                        if (jugar == false) {
+                            lbl_info.setText("Hay " + nCartones + " creados.");
+                            JOptionPane.showMessageDialog(null, "Vamos para LINEA", " -- Informacion --", JOptionPane.INFORMATION_MESSAGE);
+                            jugar = true;
+                        } else {
+                            inicioJuego();
+                        }
+
                     }
                 } catch (Exception err) {
                 }
@@ -84,6 +90,7 @@ public final class BingoFinal extends JFrame {
                         nCartones++;
                     }
                 } catch (Exception err) {
+                    System.out.println("Error 87: " + err);
                 }
             }
         });
@@ -96,7 +103,7 @@ public final class BingoFinal extends JFrame {
             }
         });
     }
-    
+
     //Metodo para iniciar el juego
     public void inicioJuego() {
 
