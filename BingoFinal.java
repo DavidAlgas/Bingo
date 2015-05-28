@@ -53,7 +53,12 @@ public final class BingoFinal extends JFrame {
         //----------------------------------------------------------------------
         //----------------------------------------------------------------------
         //Damos Funcionalidades a los Botones
-        //Boton de Iniciar El Juego
+        //----------------------------------------------------------------------
+        //----------------------------------------------------------------------
+        
+        //----------------------------------------------------------------------
+        //Damos funcionalidad al boton Jugar. Controlara que haya cartones en juego antes de iniciar el BINGO
+        //Al iniciar el juego se modificara para poder mostrar los numeros que vayan saliendo de las bolas y sacar mas numeros
         btn_Jugar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -76,7 +81,10 @@ public final class BingoFinal extends JFrame {
             }
         });
 
-        //Boton de Crear Cartones
+        //----------------------------------------------------------------------
+        //Damos funcionalidad al boton Carton
+        //Este metodo crea los cartones para jugar con un limite de 6 cartones y 
+        //no se podran crear mas cartones al iniciar el juego
         btn_Carton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -95,7 +103,8 @@ public final class BingoFinal extends JFrame {
             }
         });
 
-        //Boton de Salir
+        //----------------------------------------------------------------------
+        //Damos Funcionalidad al Boton Salir
         btn_Salir.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -104,7 +113,9 @@ public final class BingoFinal extends JFrame {
         });
     }
 
-    //Metodo para iniciar el juego
+    //--------------------------------------------------------------------------
+    //--------------------------------------------------------------------------
+    //Metodo que una vez iniciado el juego genera las bolas del bingo aleatoriamente sin repetir numeros
     public void inicioJuego() {
 
         boolean existe = false;
@@ -118,6 +129,8 @@ public final class BingoFinal extends JFrame {
             }
         } while (!existe);
 
+        Collections.sort(Bolas);
+
         btn_Jugar.setText(Integer.toString(bola));
 
         for (Carton nCarton : Cartones) {
@@ -125,7 +138,9 @@ public final class BingoFinal extends JFrame {
         }
     }
 
-    //Clase principal
+    //--------------------------------------------------------------------------
+    //--------------------------------------------------------------------------
+    //Metodo Main de la clase BingoFinal para poder ejecutar el programa
     public static void main(String[] args) {
         BingoFinal main = new BingoFinal();
     }
