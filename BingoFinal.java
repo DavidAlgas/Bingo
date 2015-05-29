@@ -54,8 +54,8 @@ public final class BingoFinal extends JFrame {
         //----------------------------------------------------------------------
         //Damos Funcionalidades a los Botones
         //----------------------------------------------------------------------
-        //----------------------------------------------------------------------
         
+        //----------------------------------------------------------------------
         //----------------------------------------------------------------------
         //Damos funcionalidad al boton Jugar. Controlara que haya cartones en juego antes de iniciar el BINGO
         //Al iniciar el juego se modificara para poder mostrar los numeros que vayan saliendo de las bolas y sacar mas numeros
@@ -74,7 +74,6 @@ public final class BingoFinal extends JFrame {
                         } else {
                             inicioJuego();
                         }
-
                     }
                 } catch (Exception err) {
                 }
@@ -137,12 +136,4 @@ public final class BingoFinal extends JFrame {
             nCarton.buscarNumero(bola);
         }
     }
-
-    //--------------------------------------------------------------------------
-    //--------------------------------------------------------------------------
-    //Metodo Main de la clase BingoFinal para poder ejecutar el programa
-    public static void main(String[] args) {
-        BingoFinal main = new BingoFinal();
-    }
-
 }
