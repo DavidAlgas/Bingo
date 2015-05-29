@@ -3,7 +3,6 @@ package bingofinal;
 import java.awt.*;
 import java.util.*;
 import javax.swing.*;
-import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 
 public final class Carton extends JFrame {
 
@@ -22,7 +21,12 @@ public final class Carton extends JFrame {
         setSize(550, 240);
         setResizable(false);
         setLocationRelativeTo(null);
-        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        if (BingoFinal.jugar == true) {
+            setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+        }
+        if (BingoFinal.jugar == false) {
+            setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        }
 
         cargarCeldas();
 
