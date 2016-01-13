@@ -10,8 +10,12 @@ Juego del Bingo desarrollado en Java usando interfaz gráfica.
 ![ScreenShot](https://raw.githubusercontent.com/DavidAlgas/Bingo-GUI/master/Images/Main.PNG)
 ![ScreenShot](https://raw.githubusercontent.com/DavidAlgas/Bingo-GUI/master/Images/Carton.PNG)
 
+> by : David Algás
+
+
 ****************
 ****************
+
 
 # Bingo with GUI
 
@@ -24,3 +28,5 @@ Bingo game developed in Java using GUI.
 ### Screenshots
 ![ScreenShot](https://raw.githubusercontent.com/DavidAlgas/Bingo-GUI/master/Images/Main.PNG)
 ![ScreenShot](https://raw.githubusercontent.com/DavidAlgas/Bingo-GUI/master/Images/Carton.PNG)
+
+> by : David Algás
