@@ -10,6 +10,10 @@ Juego del Bingo desarrollado en Java usando interfaz gráfica.
 ![ScreenShot](https://raw.githubusercontent.com/DavidAlgas/Bingo-GUI/master/Images/Main.PNG)
 ![ScreenShot](https://raw.githubusercontent.com/DavidAlgas/Bingo-GUI/master/Images/Carton.PNG)
 
+### Cómo Ejecutarlo
+  - Descargando la carpeta Bingo
+  - Descargando el archivo .RAR de la carpeta dist y ejecutando el archivo .JAR
+
 > by : David Algás
 
 
@@ -28,5 +32,9 @@ Bingo game developed in Java using GUI.
 ### Screenshots
 ![ScreenShot](https://raw.githubusercontent.com/DavidAlgas/Bingo-GUI/master/Images/Main.PNG)
 ![ScreenShot](https://raw.githubusercontent.com/DavidAlgas/Bingo-GUI/master/Images/Carton.PNG)
+
+### How to run
+  - Downloading Bingo folder
+  - Downloading the RAR file of the dist folder and running the JAR file
 
 > by : David Algás
