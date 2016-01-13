@@ -25,7 +25,7 @@ Juego del Bingo desarrollado en Java usando interfaz gráfica.
 
 Bingo game developed in Java using GUI.
 
-### Characteristics
+### Features
 * Up to 6 players
 * GUI Netbeans
 
@@ -33,7 +33,7 @@ Bingo game developed in Java using GUI.
 ![ScreenShot](https://raw.githubusercontent.com/DavidAlgas/Bingo-GUI/master/Images/Main.PNG)
 ![ScreenShot](https://raw.githubusercontent.com/DavidAlgas/Bingo-GUI/master/Images/Carton.PNG)
 
-### How to run
+### How to Run it
   - Downloading Bingo folder
   - Downloading the RAR file of the dist folder and running the JAR file
 
